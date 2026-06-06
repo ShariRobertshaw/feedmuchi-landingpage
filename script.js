@@ -102,13 +102,16 @@ function playFlipHeadline(element, options = {}) {
 function setupFlipHeadlines() {
   const manuallyTimed = new Set([
     line1,
-    document.getElementById("howTitle"),
     document.getElementById("fibreHappyTitle"),
-    ...document.querySelectorAll(".how-step-title")
   ].filter(Boolean));
 
   const headings = [...document.querySelectorAll("main h1, main h2, main h3, main h4, main h5, main h6")]
-    .filter((heading) => heading.children.length === 0 && !heading.closest(".science-scene"));
+    .filter(
+      (heading) =>
+        heading.children.length === 0 &&
+        !heading.closest(".science-scene") &&
+        !heading.closest(".how-it-works")
+    );
 
   const targets = new Set([
     ...manuallyTimed,
@@ -140,8 +143,6 @@ function playHowHeadlines() {
 
   howItWorks.dataset.headlinesPlayed = "true";
   howItWorks.classList.add("is-visible");
-
-  playFlipHeadline(document.getElementById("howTitle"));
 }
 
 function getRangeProgress(value, start, end) {
@@ -176,13 +177,6 @@ function updateHowPhoneReveal() {
 
   setPhoneClip(howPhoneStep2, getRangeProgress(progress, 0.33, 0.5));
   setPhoneClip(howPhoneStep3, getRangeProgress(progress, 0.66, 0.83));
-
-  document.querySelectorAll(".how-step-title").forEach((title, index) => {
-    const trigger = [0.18, 0.44, 0.72][index] ?? 0.18;
-    if (progress >= trigger) {
-      playFlipHeadline(title);
-    }
-  });
 }
 
 function revealStaticState() {
@@ -356,6 +350,16 @@ function setupHowItWorksMotion() {
   syncCoveringState();
 }
 
+function setupHowPhoneReveal() {
+  if (!howItWorks) return;
+
+  const syncPhoneReveal = () => updateHowPhoneReveal();
+
+  window.addEventListener("scroll", syncPhoneReveal, { passive: true });
+  window.addEventListener("resize", syncPhoneReveal);
+  syncPhoneReveal();
+}
+
 const FIBRE_HAPPY_MUCHI_FRAMES = [
   "images/blinking-purple.gif",
   "images/blinking-orange.gif",
@@ -424,53 +428,11 @@ function setupFibreHappySection() {
   observer.observe(section);
 }
 
-function setupHowPhoneReveal() {
-  if (!howItWorks) return;
-
-  const syncPhoneReveal = () => updateHowPhoneReveal();
-
-  window.addEventListener("scroll", syncPhoneReveal, { passive: true });
-  window.addEventListener("resize", syncPhoneReveal);
-  syncPhoneReveal();
-}
-
-function setupHowStepImageCursor() {
-  const cursor = document.getElementById("howStepCursor");
-  const steps = [...document.querySelectorAll(".how-step[data-cursor-image]")];
-  if (!cursor || steps.length === 0 || prefersReducedMotion) return;
-
-  const hideCursor = () => {
-    cursor.classList.remove("is-active");
-  };
-
-  steps.forEach((step) => {
-    step.classList.add("has-image-cursor");
-
-    step.addEventListener("mouseenter", () => {
-      const src = step.getAttribute("data-cursor-image");
-      if (!src) return;
-      cursor.src = src;
-      cursor.style.width = `${step.getAttribute("data-cursor-width") || "240"}px`;
-      cursor.classList.add("is-active");
-    });
-
-    step.addEventListener("mousemove", (event) => {
-      cursor.style.left = `${event.clientX}px`;
-      cursor.style.top = `${event.clientY}px`;
-    });
-
-    step.addEventListener("mouseleave", hideCursor);
-  });
-
-  window.addEventListener("scroll", hideCursor, { passive: true });
-}
-
 setupFlipHeadlines();
 syncHeadlineWrapping();
 window.addEventListener("resize", syncHeadlineWrapping);
 setupHowItWorksMotion();
 setupHowPhoneReveal();
 setupFibreHappySection();
-setupHowStepImageCursor();
 window.initScienceScroll?.();
 runSequence();
