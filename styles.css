@@ -252,44 +252,48 @@ main h6 {
   opacity: 0;
 }
 
+.muchi-btn {
+  cursor: pointer;
+}
+
+.muchi-btn:hover,
+.muchi-btn:focus-visible {
+  cursor: url("images/cursor-microbiome.png") 32 29, pointer;
+}
+
 .muchi-btn-label {
   position: relative;
-  display: inline-block;
+  display: inline-grid;
   height: 28px;
   overflow: hidden;
   line-height: 28px;
-  perspective: 400px;
 }
 
 .muchi-btn-label::before,
 .muchi-btn-label::after {
+  grid-area: 1 / 1;
   content: attr(data-text);
-  display: block;
   height: 28px;
   line-height: 28px;
-  transform-origin: center bottom;
-  transition: transform 0.58s ease, opacity 0.58s ease;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .muchi-btn-label::after {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  width: 100%;
-  transform: rotateX(-90deg);
+  transform: translateY(110%);
   opacity: 0;
 }
 
 .muchi-btn:hover .muchi-btn-label::before,
 .muchi-btn:focus-visible .muchi-btn-label::before {
-  transform: rotateX(90deg);
+  transform: translateY(-110%);
   opacity: 0;
 }
 
 .muchi-btn:hover .muchi-btn-label::after,
 .muchi-btn:focus-visible .muchi-btn-label::after {
-  top: 0;
-  transform: rotateX(0deg);
+  transform: translateY(0);
   opacity: 1;
 }
 
@@ -305,7 +309,6 @@ main h6 {
   .muchi-btn:focus-visible .muchi-btn-label::after {
     transform: none;
     opacity: 1;
-    top: auto;
   }
 
   .muchi-btn:hover .muchi-btn-label::after,

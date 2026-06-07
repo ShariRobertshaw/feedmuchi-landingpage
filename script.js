@@ -366,6 +366,8 @@ const FIBRE_HAPPY_MUCHI_FRAMES = [
   "images/green-happy.png"
 ];
 
+const FIBRE_HAPPY_SWAP_MS = 2000;
+
 function setFibreHappyMuchiFrame(muchi, frameIndex) {
   muchi.src = FIBRE_HAPPY_MUCHI_FRAMES[frameIndex];
   muchi.classList.toggle("is-happy", frameIndex === 2);
@@ -402,12 +404,12 @@ function setupFibreHappySection() {
     timers.push(
       setTimeout(() => {
         setFibreHappyMuchiFrame(muchi, 1);
-      }, 3000)
+      }, FIBRE_HAPPY_SWAP_MS)
     );
     timers.push(
       setTimeout(() => {
         setFibreHappyMuchiFrame(muchi, 2);
-      }, 6000)
+      }, FIBRE_HAPPY_SWAP_MS * 2)
     );
   };
 
