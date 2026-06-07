@@ -99,10 +99,12 @@ body {
   z-index: 10;
   width: 100%;
   height: 100vh;
+  height: 100svh;
   min-height: 640px;
   background: var(--purple);
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: clip;
   transform: translateY(0);
   transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
@@ -785,20 +787,39 @@ main h6 {
 }
 
 .site-footer-copy-label {
-  display: inline-grid;
+  display: inline-block;
+  position: relative;
   height: 21px;
   overflow: hidden;
   line-height: 21px;
   perspective: 400px;
-  white-space: nowrap;
+  vertical-align: top;
 }
 
 .site-footer-copy-face {
-  grid-area: 1 / 1;
+  display: block;
   height: 21px;
   line-height: 21px;
   transform-origin: center bottom;
   transition: transform 0.58s ease, opacity 0.58s ease;
+}
+
+.site-footer-copy-default {
+  position: relative;
+}
+
+.site-footer-copy-hover,
+.site-footer-copy-success {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+
+.site-footer-copy-contact:hover .site-footer-copy-label,
+.site-footer-copy-contact:focus-visible .site-footer-copy-label,
+.site-footer-copy-contact.is-copied .site-footer-copy-label {
+  width: auto;
 }
 
 .site-footer-copy-hover,
@@ -1135,6 +1156,24 @@ main h6 {
 }
 
 @media (max-width: 768px) {
+  .intro {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    padding:
+      env(safe-area-inset-top, 0)
+      env(safe-area-inset-right, 0)
+      env(safe-area-inset-bottom, 0)
+      env(safe-area-inset-left, 0);
+    box-sizing: border-box;
+  }
+
+  .intro-media {
+    width: min(210px, 54vw);
+    height: auto;
+    aspect-ratio: 210 / 109.837;
+  }
+
   .how-it-works {
     position: relative;
     top: auto;
@@ -1216,6 +1255,20 @@ main h6 {
   .how-step-copy {
     font-size: 18px;
     line-height: 28px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 20px;
+    text-align: center;
+  }
+
+  .site-footer-nav {
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
   }
 }
 
@@ -1451,6 +1504,9 @@ main h6 {
   }
 
   .site-footer-nav {
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
     gap: 32px;
   }
 
