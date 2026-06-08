@@ -163,7 +163,7 @@ body {
   font-family: var(--heading-font);
   font-weight: 600;
   font-size: 72px;
-  line-height: clamp(56px, 6.4vw, 90px);
+  line-height: 1.08;
   letter-spacing: 0;
 }
 
@@ -344,7 +344,6 @@ main h6 {
 
   .headline {
     font-size: clamp(46px, 5.1vw, 74px);
-    line-height: clamp(54px, 5.8vw, 84px);
   }
 
   .hero-art {
@@ -759,10 +758,12 @@ main h6 {
 .site-footer-nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 32px;
 }
 
 .site-footer-nav a {
+  flex: 0 0 auto;
   font-family: var(--body-font);
   font-size: 14px;
   font-weight: 700;
@@ -770,6 +771,7 @@ main h6 {
   letter-spacing: -0.4238px;
   color: var(--text-primary);
   text-decoration: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-footer-nav a[aria-current="page"] {
@@ -781,6 +783,7 @@ main h6 {
   padding: 0;
   background: none;
   cursor: pointer;
+  flex: 0 0 auto;
   font-family: var(--body-font);
   font-size: 14px;
   font-weight: 700;
@@ -790,92 +793,68 @@ main h6 {
 }
 
 .site-footer-copy-label {
-  display: inline-block;
+  display: inline-grid;
+  justify-items: center;
   position: relative;
   height: 21px;
   overflow: hidden;
   line-height: 21px;
-  perspective: 400px;
   vertical-align: top;
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-footer-copy-face {
+  grid-area: 1 / 1;
   display: block;
   height: 21px;
   line-height: 21px;
-  transform-origin: center bottom;
-  transition: transform 0.58s ease, opacity 0.58s ease;
-}
-
-.site-footer-copy-default {
-  position: relative;
-}
-
-.site-footer-copy-hover,
-.site-footer-copy-success {
-  position: absolute;
-  left: 0;
-  top: 0;
   white-space: nowrap;
+  text-align: center;
+  transition:
+    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.site-footer-copy-contact:hover .site-footer-copy-label,
-.site-footer-copy-contact:focus-visible .site-footer-copy-label,
-.site-footer-copy-contact.is-copied .site-footer-copy-label {
-  width: auto;
-}
-
-.site-footer-copy-hover,
 .site-footer-copy-success {
-  transform: rotateX(-90deg);
   opacity: 0;
+  transform: translateY(110%);
+  pointer-events: none;
 }
 
-.site-footer-copy-contact:hover .site-footer-copy-default,
-.site-footer-copy-contact:focus-visible .site-footer-copy-default {
-  transform: rotateX(90deg);
+.site-footer-copy-contact.is-copied .site-footer-copy-default {
   opacity: 0;
-}
-
-.site-footer-copy-contact:hover .site-footer-copy-hover,
-.site-footer-copy-contact:focus-visible .site-footer-copy-hover {
-  transform: rotateX(0deg);
-  opacity: 1;
-}
-
-.site-footer-copy-contact.is-copied .site-footer-copy-default,
-.site-footer-copy-contact.is-copied .site-footer-copy-hover {
-  transform: rotateX(90deg);
-  opacity: 0;
+  transform: translateY(-110%);
 }
 
 .site-footer-copy-contact.is-copied .site-footer-copy-success {
-  transform: rotateX(0deg);
   opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-footer-nav a,
+  .site-footer-copy-label,
   .site-footer-copy-face {
     transition: none;
   }
 
-  .site-footer-copy-contact:hover .site-footer-copy-default,
-  .site-footer-copy-contact:focus-visible .site-footer-copy-default,
-  .site-footer-copy-contact.is-copied .site-footer-copy-default,
-  .site-footer-copy-contact.is-copied .site-footer-copy-hover {
+  .site-footer-copy-success {
+    opacity: 0;
     transform: none;
-    opacity: 1;
+    display: none;
   }
 
-  .site-footer-copy-hover,
-  .site-footer-copy-success {
+  .site-footer-copy-contact.is-copied .site-footer-copy-default {
     display: none;
+    opacity: 0;
+    transform: none;
   }
 
   .site-footer-copy-contact.is-copied .site-footer-copy-success {
     display: block;
-    position: static;
     opacity: 1;
+    transform: none;
   }
 }
 
@@ -1069,7 +1048,6 @@ main h6 {
 
   .headline {
     font-size: 64px;
-    line-height: 74px;
   }
 
   .hero-art {
@@ -1313,7 +1291,6 @@ main h6 {
 
   .headline {
     font-size: 48px;
-    line-height: 56px;
   }
 
   .subtext {
