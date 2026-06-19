@@ -16,6 +16,14 @@ const FACTS = [
     banner: "Tracks every different plant you eat automatically, so you can see your variety at a glance",
     bannerTilt: 2.64,
   },
+  {
+    title:
+      "A diverse, well-fed gut microbiome is linked to better mood, energy, and immune function.",
+    sourceLabel: "Cryan et al. — Physiological Reviews, 2019",
+    sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/31460832/",
+    banner: "Muchi's mood reflects how well you're feeding your gut, meal by meal",
+    bannerTilt: -1.17,
+  },
 ];
 
 function shuffle(items) {

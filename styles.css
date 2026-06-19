@@ -841,11 +841,13 @@ main h6 {
 .facts-banner-tilt {
   transform: rotate(var(--facts-banner-tilt, -4.98deg));
   transform-origin: center center;
-  width: min(1120px, calc(100vw - 160px));
+  width: fit-content;
+  max-width: calc(100vw - 160px);
 }
 
 .facts-banner {
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   border-radius: 4px;
   background: #ffffff;
   box-shadow:
@@ -855,7 +857,7 @@ main h6 {
 
 .facts-banner-text {
   margin: 0;
-  padding: 10px 16px;
+  padding: 10px 32px;
   font-family: var(--heading-font);
   font-size: 18px;
   font-weight: 700;
@@ -1653,12 +1655,12 @@ main h6 {
   }
 
   .facts-banner-tilt {
-    width: min(1100px, calc(100vw - 40px));
+    width: fit-content;
     max-width: calc(100vw - 40px);
   }
 
   .facts-banner {
-    width: 100%;
+    width: fit-content;
     max-width: 100%;
   }
 
@@ -1669,7 +1671,7 @@ main h6 {
   .facts-banner-text {
     font-size: 16px;
     line-height: 24px;
-    padding: 10px 12px;
+    padding: 10px 32px;
     white-space: normal;
   }
 
