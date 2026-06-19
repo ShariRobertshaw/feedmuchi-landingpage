@@ -103,6 +103,7 @@ function setupFlipHeadlines() {
   const manuallyTimed = new Set([
     line1,
     document.getElementById("fibreHappyTitle"),
+    document.getElementById("factsTitle"),
   ].filter(Boolean));
 
   const headings = [...document.querySelectorAll("main h1, main h2, main h3, main h4, main h5, main h6")]
@@ -436,5 +437,9 @@ window.addEventListener("resize", syncHeadlineWrapping);
 setupHowItWorksMotion();
 setupHowPhoneReveal();
 setupFibreHappySection();
+window.setupFactsCarousel?.(() => {
+  const factsTitle = document.getElementById("factsTitle");
+  if (factsTitle) playFlipHeadline(factsTitle);
+});
 window.initScienceScroll?.();
 runSequence();
