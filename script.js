@@ -99,6 +99,20 @@ function playFlipHeadline(element, options = {}) {
   });
 }
 
+function updateFactsHeadline(text) {
+  const title = document.getElementById("factsTitle");
+  if (!title) return;
+
+  flipHeadlines.delete(title);
+  title.removeAttribute("data-flip-played");
+  title.classList.remove("flip-headline");
+  title.textContent = text;
+  title.setAttribute("aria-label", text);
+  playFlipHeadline(title, { replay: true });
+}
+
+window.updateFactsHeadline = updateFactsHeadline;
+
 function setupFlipHeadlines() {
   const manuallyTimed = new Set([
     line1,

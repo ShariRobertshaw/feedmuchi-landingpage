@@ -3,27 +3,19 @@ const COPY_RESET_MS = 2200;
 const WIDTH_RESET_DELAY_MS = 320;
 
 function measureFaceWidth(face) {
-  const previous = {
-    visibility: face.style.visibility,
-    position: face.style.position,
-    display: face.style.display,
-    opacity: face.style.opacity,
-    transform: face.style.transform,
-  };
+  const probe = document.createElement("span");
+  const styles = getComputedStyle(face);
+  probe.textContent = face.textContent;
+  probe.style.position = "absolute";
+  probe.style.visibility = "hidden";
+  probe.style.whiteSpace = "nowrap";
+  probe.style.left = "-9999px";
+  probe.style.font = styles.font;
+  probe.style.letterSpacing = styles.letterSpacing;
 
-  face.style.visibility = "hidden";
-  face.style.position = "absolute";
-  face.style.display = "block";
-  face.style.opacity = "1";
-  face.style.transform = "none";
-
-  const width = face.offsetWidth;
-
-  face.style.visibility = previous.visibility;
-  face.style.position = previous.position;
-  face.style.display = previous.display;
-  face.style.opacity = previous.opacity;
-  face.style.transform = previous.transform;
+  face.parentElement.appendChild(probe);
+  const width = probe.offsetWidth;
+  probe.remove();
 
   return width;
 }
@@ -39,14 +31,33 @@ function setupCopyEmailContact() {
 
     let resetTimer;
     let widthResetTimer;
-    let contactWidth = measureFaceWidth(defaultFace);
-    let copiedWidth = measureFaceWidth(successFace);
+    let contactWidth = 0;
+    let copiedWidth = 0;
 
-    const syncLabelWidth = (copied) => {
-      label.style.width = `${copied ? copiedWidth : contactWidth}px`;
+    const measureWidths = () => {
+      contactWidth = measureFaceWidth(defaultFace);
+      copiedWidth = measureFaceWidth(successFace);
     };
 
-    syncLabelWidth(false);
+    const syncLabelWidth = (copied) => {
+      const width = copied ? copiedWidth : contactWidth;
+      if (width > 0) {
+        label.style.width = `${width}px`;
+      } else {
+        label.style.removeProperty("width");
+      }
+    };
+
+    const init = () => {
+      measureWidths();
+      syncLabelWidth(false);
+    };
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(init);
+    } else {
+      init();
+    }
 
     const resetLabel = () => {
       button.classList.remove("is-copied");
@@ -64,8 +75,7 @@ function setupCopyEmailContact() {
     };
 
     const remeasureWidths = () => {
-      contactWidth = measureFaceWidth(defaultFace);
-      copiedWidth = measureFaceWidth(successFace);
+      measureWidths();
       syncLabelWidth(button.classList.contains("is-copied"));
     };
 
@@ -86,6 +96,8 @@ function setupCopyEmailContact() {
         document.execCommand("copy");
         document.body.removeChild(input);
       }
+
+      measureWidths();
 
       if (!prefersReducedMotion) {
         syncLabelWidth(true);

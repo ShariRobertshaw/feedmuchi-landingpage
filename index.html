@@ -218,50 +218,40 @@
 
       <section class="facts-carousel" id="factsCarousel" aria-labelledby="factsTitle">
         <div class="facts-carousel-inner">
-          <article class="facts-slide is-active" data-slide="0" aria-hidden="false">
-            <div class="facts-layout">
-              <div class="facts-veg-cluster" aria-hidden="true">
-                <img class="facts-veg facts-veg-aubergine" src="images/facts-aubergine.png" alt="" />
-                <img class="facts-veg facts-veg-tomato" src="images/facts-tomato.png" alt="" />
-                <img class="facts-veg facts-veg-apple" src="images/facts-apple.png" alt="" />
-                <img class="facts-veg facts-veg-lettuce" src="images/facts-lettuce.png" alt="" />
-                <img class="facts-veg facts-veg-cucumber" src="images/facts-cucumber.png" alt="" />
-                <img class="facts-veg facts-veg-carrot" src="images/facts-carrot.png" alt="" />
-              </div>
+          <div class="facts-layout">
+            <button type="button" class="facts-veg-cluster facts-hit" aria-label="Show next fact">
+              <img class="facts-veg facts-veg-aubergine" src="images/facts-aubergine.png" alt="" />
+              <img class="facts-veg facts-veg-tomato" src="images/facts-tomato.png" alt="" />
+              <img class="facts-veg facts-veg-apple" src="images/facts-apple.png" alt="" />
+              <img class="facts-veg facts-veg-lettuce" src="images/facts-lettuce.png" alt="" />
+              <img class="facts-veg facts-veg-cucumber" src="images/facts-cucumber.png" alt="" />
+              <img class="facts-veg facts-veg-carrot" src="images/facts-carrot.png" alt="" />
+            </button>
 
-              <div class="facts-copy">
-                <h2 class="facts-title" id="factsTitle">
-                  Every 7g of extra fibre you eat daily reduces bowel cancer risk by 8%
-                </h2>
-                <p class="facts-source">
-                  Source:
-                  <a
-                    href="https://pubmed.ncbi.nlm.nih.gov/22074852/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Aune et al., BMJ — Imperial College London meta-analysis, 2011</a
-                  >
-                </p>
+            <button type="button" class="facts-copy facts-hit" aria-label="Show next fact">
+              <h2 class="facts-title" id="factsTitle">
+                Every 7g of extra fibre you eat daily reduces bowel cancer risk by 8%
+              </h2>
+              <p class="facts-source" id="factsSource">
+                Source:
+                <a
+                  id="factsSourceLink"
+                  href="https://pubmed.ncbi.nlm.nih.gov/22074852/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Aune et al., BMJ — Imperial College London meta-analysis, 2011</a
+                >
+              </p>
+            </button>
+          </div>
+
+          <div class="facts-banner-wrap">
+            <div class="facts-banner-tilt" id="factsBannerTilt">
+              <div class="facts-banner">
+                <p class="facts-banner-text" id="factsBannerText">Every meal you log shows your fibre total, so you can see exactly how close you are to that extra 7g.</p>
               </div>
             </div>
-
-            <div class="facts-banner-wrap" aria-hidden="true">
-              <div class="facts-banner-tilt">
-                <div class="facts-banner">
-                  <div class="facts-banner-track">
-                    <p class="facts-banner-text">
-                      Every meal you log shows your fibre total, so you can see exactly how close you are to that extra
-                      7g.
-                    </p>
-                    <p class="facts-banner-text" aria-hidden="true">
-                      Every meal you log shows your fibre total, so you can see exactly how close you are to that extra
-                      7g.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
       </section>
 

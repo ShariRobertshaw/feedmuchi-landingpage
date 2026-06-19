@@ -681,21 +681,37 @@ main h6 {
   width: min(1180px, 100%);
   flex: 1;
   display: flex;
-  align-items: center;
-}
-
-.facts-slide {
-  display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: clamp(48px, 8vh, 88px);
-  width: 100%;
 }
 
 .facts-layout {
   display: flex;
   align-items: center;
   gap: 32px;
+  width: 100%;
+}
+
+.facts-hit {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+}
+
+.facts-hit,
+.facts-hit img {
+  cursor: url("images/cursor-next-fact.svg") 4 46, pointer;
+}
+
+.facts-hit:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
 }
 
 .facts-veg-cluster {
@@ -703,6 +719,7 @@ main h6 {
   flex: 0 0 min(440px, 42vw);
   width: min(440px, 42vw);
   height: clamp(260px, 32vw, 320px);
+  display: block;
 }
 
 .facts-veg {
@@ -778,11 +795,17 @@ main h6 {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-align: left;
+}
+
+.facts-copy.facts-hit {
+  width: 100%;
+  align-items: flex-start;
 }
 
 .facts-title {
   margin: 0;
-  max-width: 636px;
+  max-width: 700px;
   font-family: var(--heading-font);
   font-weight: 700;
   font-size: clamp(40px, 4.2vw, 56px);
@@ -792,12 +815,12 @@ main h6 {
 
 .facts-source {
   margin: 0;
-  max-width: 556px;
+  max-width: 600px;
   font-family: var(--mono-font);
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.16px;
+  line-height: 1.35;
+  letter-spacing: -0.1px;
   color: rgba(255, 255, 255, 0.92);
 }
 
@@ -816,27 +839,18 @@ main h6 {
 }
 
 .facts-banner-tilt {
-  transform: rotate(-4.98deg);
+  transform: rotate(var(--facts-banner-tilt, -4.98deg));
   transform-origin: center center;
+  width: min(1120px, calc(100vw - 160px));
 }
 
 .facts-banner {
-  width: min(964px, calc(100vw - 160px));
-  overflow: hidden;
+  width: 100%;
   border-radius: 4px;
   background: #ffffff;
   box-shadow:
     0 4px 6px -4px rgba(45, 45, 45, 0.2),
     0 10px 15px -3px rgba(22, 27, 102, 0.2);
-}
-
-.facts-banner-track {
-  display: flex;
-  width: max-content;
-}
-
-.facts-carousel.is-visible .facts-banner-track {
-  animation: facts-banner-scroll 75s linear infinite;
 }
 
 .facts-banner-text {
@@ -846,18 +860,9 @@ main h6 {
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
+  text-align: center;
   white-space: nowrap;
   color: var(--text-primary);
-}
-
-@keyframes facts-banner-scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -865,10 +870,6 @@ main h6 {
     opacity: 1;
     transform: scale(1) rotate(var(--veg-rotate, 0deg));
     transition: none;
-  }
-
-  .facts-banner-track {
-    animation: none;
   }
 }
 
@@ -1628,12 +1629,15 @@ main h6 {
   }
 
   .facts-copy {
-    order: -1;
+    align-items: center;
+    text-align: center;
+  }
+
+  .facts-copy.facts-hit {
     align-items: center;
   }
 
   .facts-veg-cluster {
-    order: 0;
     flex: none;
     width: min(340px, 100%);
     height: 248px;
@@ -1645,12 +1649,17 @@ main h6 {
   }
 
   .facts-source {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 10px;
+  }
+
+  .facts-banner-tilt {
+    width: min(1100px, calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
   }
 
   .facts-banner {
-    width: min(964px, calc(100vw - 40px));
+    width: 100%;
+    max-width: 100%;
   }
 
   .facts-banner-wrap {
@@ -1661,6 +1670,7 @@ main h6 {
     font-size: 16px;
     line-height: 24px;
     padding: 10px 12px;
+    white-space: normal;
   }
 
   .science-pin {
