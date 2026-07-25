@@ -1132,6 +1132,14 @@ main h6 {
   color: #242326;
 }
 
+.privacy-meta {
+  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: rgba(36, 35, 38, 0.72);
+}
+
 .privacy-body > * + * {
   margin-top: 0;
 }
@@ -1178,10 +1186,10 @@ main h6 {
 }
 
 .privacy-heading-sm {
-  margin: 0 0 30px;
-  font-family: var(--heading-font);
+  margin: 0 0 8px;
+  font-family: var(--body-font);
   font-weight: 700;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 30px;
   color: #242326;
 }
@@ -1782,9 +1790,13 @@ main h6 {
     line-height: 32px;
   }
 
-  .privacy-heading-md,
-  .privacy-heading-sm {
+  .privacy-heading-md {
     font-size: 22px;
+    line-height: 28px;
+  }
+
+  .privacy-heading-sm {
+    font-size: 18px;
     line-height: 28px;
   }
 }

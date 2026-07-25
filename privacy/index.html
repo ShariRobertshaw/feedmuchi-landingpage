@@ -40,13 +40,15 @@
         <h1 class="privacy-title">Privacy Policy</h1>
 
         <div class="privacy-body">
+          <p class="privacy-meta">Effective date: 25 July 2026</p>
+
           <h2 class="privacy-heading-lg">Who we are</h2>
           <p>
             Muchi is a gut health app built by Shari Robertshaw, based in Bath, UK. You can contact us at
             <a href="mailto:hello@feedmuchi.com">hello@feedmuchi.com</a>.
           </p>
 
-          <h3 class="privacy-heading-md">What data we collect</h3>
+          <h2 class="privacy-heading-lg">What data we collect</h2>
           <h4 class="privacy-heading-sm">When you create an account:</h4>
           <ul>
             <li>Your email address</li>
@@ -60,18 +62,43 @@
               Photos you take or upload of your meals — these are used only to identify food items and are not stored
               permanently
             </li>
+            <li>
+              Spoken meal descriptions, if you use voice logging — the recording is sent for transcription and is not
+              retained
+            </li>
+            <li>Barcodes you scan</li>
             <li>Your daily fibre totals and plant variety counts</li>
-            <li>The name you give your Muchi pet</li>
+            <li>The name you give your Muchi pet, and Muchi's mood/progress state</li>
           </ul>
 
           <h4 class="privacy-heading-sm">Automatically:</h4>
           <ul>
             <li>
-              Basic usage data via Posthog analytics — which features you use, how often you open the app, whether you
-              complete certain actions. This helps us understand what's working and what isn't. No personally
-              identifiable information is included in these analytics events.
+              A random device identifier, used only to prevent abuse of our systems (rate-limiting). This isn't linked
+              to analytics and isn't used to track your behaviour.
             </li>
+            <li>Optional analytics, via PostHog — see below.</li>
           </ul>
+
+          <h4 class="privacy-heading-sm">Optional analytics</h4>
+          <p>
+            Analytics is off by default. The first time you visit Home after signing in, we ask if you'd like to turn it
+            on. You can change your choice at any time in Account, and using Muchi doesn't require it either way.
+          </p>
+          <p>
+            If you turn it on, we send a limited set of usage events — like which screen you're on, which way you logged
+            a meal (photo, barcode, voice, etc.), and whether an action succeeded or failed — using a temporary
+            identifier that only lasts for that session. It isn't linked to your account or email, and we don't use it
+            to build a profile of you or track you across separate visits.
+          </p>
+          <p>
+            Analytics never sees the actual content of what you log: no food names, photos, audio, transcripts, fibre or
+            nutrition numbers, or your Muchi's mood. It's purely "which screen, which button" — not "what did you eat."
+          </p>
+          <p>
+            We use PostHog for this, with data processed in the EU. Events are kept for 7 years. You can turn analytics
+            off any time in Account, which stops any further collection.
+          </p>
 
           <h4 class="privacy-heading-sm">What we don't collect</h4>
           <ul>
@@ -84,9 +111,11 @@
           <h4 class="privacy-heading-sm">We use your data to:</h4>
           <ul>
             <li>Run the app and save your food logs across sessions</li>
+            <li>Identify food items from photos, barcodes, or voice descriptions you submit</li>
             <li>Show you your fibre progress and Muchi's mood</li>
-            <li>Improve the app based on how people use it</li>
+            <li>Improve the app based on how people use it (only if you've opted into analytics)</li>
             <li>Send you account-related emails (signup confirmation, password reset)</li>
+            <li>Keep the app secure and prevent abuse</li>
           </ul>
 
           <h4 class="privacy-heading-sm">Who we share data with</h4>
@@ -106,14 +135,28 @@
 
           <p>
             <strong>OpenRouter / Google Gemini</strong><br />
-            Your meal photos are sent to an AI vision model to identify food items. Photos are not stored by us after
-            analysis.
+            Your meal photos or typed/spoken descriptions are sent to an AI model to identify food items. This content
+            isn't stored by us after analysis.
             <a href="https://openrouter.ai/privacy" target="_blank" rel="noopener noreferrer">openrouter.ai/privacy</a>
           </p>
 
           <p>
-            <strong>Posthog</strong><br />
-            Anonymous usage analytics, hosted on EU servers.
+            <strong>Open Food Facts</strong><br />
+            Barcode scans are looked up against Open Food Facts' database to identify products.
+            <a href="https://world.openfoodfacts.org/privacy" target="_blank" rel="noopener noreferrer"
+              >world.openfoodfacts.org/privacy</a
+            >
+          </p>
+
+          <p>
+            <strong>USDA FoodData Central</strong><br />
+            Used as a fallback for food and nutrition lookups when Open Food Facts doesn't have a match. This is a US
+            government database; no account or personal data is sent to it beyond the search term.
+          </p>
+
+          <p>
+            <strong>PostHog</strong><br />
+            Optional, session-only usage analytics, hosted in the EU — only active if you've turned it on.
             <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a>
           </p>
 
@@ -126,6 +169,12 @@
             <li>Delete your account and all associated data</li>
             <li>Export your food log data</li>
             <li>Correct any inaccurate data</li>
+            <li>Withdraw consent to analytics at any time, without affecting your ability to use the app</li>
+            <li>
+              Complain to the UK Information Commissioner's Office (ICO) at
+              <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a> if you're unhappy
+              with how we've handled your data
+            </li>
           </ul>
           <p>
             To exercise any of these rights, email us at
@@ -141,13 +190,25 @@
           <h3 class="privacy-heading-body">Data retention</h3>
           <p>
             We keep your data for as long as your account is active. If you delete your account, we delete all your
-            personal data within 30 days.
+            personal data within 30 days — this covers your account, food logs, and profile information held in
+            Supabase.
+          </p>
+          <p>
+            Optional analytics events sent to PostHog are kept separately, for 7 years, since they aren't linked to
+            your account and so aren't deleted as part of account deletion.
           </p>
 
-          <h3 class="privacy-heading-body">Cookies</h3>
+          <h3 class="privacy-heading-body">Cookies and local storage</h3>
           <p>
-            The Muchi app does not use advertising cookies. We use a single analytics session cookie via Posthog to
-            understand how the app is used. You can opt out of analytics by contacting us.
+            The Muchi app doesn't use cookies. On the web app, we use your browser's local storage to remember your
+            analytics preference on that device — this isn't a tracking cookie, and it's specific to the browser or
+            device you set it on. You can change your analytics choice any time in Account.
+          </p>
+
+          <h3 class="privacy-heading-body">Notifications</h3>
+          <p>
+            If you enable food-log reminders, Muchi schedules these locally on your device. We don't send any data to a
+            third party to deliver them.
           </p>
 
           <h3 class="privacy-heading-body">Children</h3>
@@ -156,7 +217,7 @@
           <h3 class="privacy-heading-body">Changes to this policy</h3>
           <p>
             If we make significant changes to this policy we'll notify you by email. The latest version is always at
-            feedmuchi.com/privacy.
+            <a href="https://feedmuchi.com/privacy/">feedmuchi.com/privacy</a>.
           </p>
 
           <h3 class="privacy-heading-body">Contact</h3>
