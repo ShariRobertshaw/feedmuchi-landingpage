@@ -5,7 +5,6 @@ const wordmark = document.getElementById("wordmark");
 const line1 = document.getElementById("line1");
 const subtext = document.getElementById("subtext");
 const ctaBtn = document.getElementById("ctaBtn");
-const footnote = document.getElementById("footnote");
 const hero = document.getElementById("hero");
 const heroGreenScene = document.getElementById("heroGreenScene");
 const muchi = document.getElementById("muchi");
@@ -205,8 +204,7 @@ function revealStaticState() {
   howItWorks?.classList.add("is-visible");
   subtext.style.opacity = "0.8";
   subtext.style.transform = "translateY(0)";
-  ctaBtn.style.opacity = "1";
-  footnote.style.opacity = "1";
+  ctaBtn?.style && (ctaBtn.style.opacity = "1");
   muchi.style.opacity = "1";
   muchi.style.transform = "translate(0,0)";
   creatures.forEach((node) => {
@@ -247,7 +245,6 @@ async function runSequence() {
     playFlipHeadline(line1, { delay: 2200 });
     animate(subtext, { opacity: [0, 0.8], y: [20, 0] }, { duration: 0.5, easing: "ease-out", delay: 3.05 });
     animate(ctaBtn, { opacity: [0, 1] }, { duration: 0.4, easing: "ease-out", delay: 3.2 });
-    animate(footnote, { opacity: [0, 1] }, { duration: 0.4, delay: 3.35 });
 
     animate(
       muchi,
@@ -256,12 +253,6 @@ async function runSequence() {
         opacity: { duration: 0.6, delay: 2.3 },
         x: { ...spring({ stiffness: 200, damping: 22 }), delay: 2.3 }
       }
-    );
-
-    animate(
-      muchi,
-      { x: [0, 7, -5, 0], y: [0, -14, -6, 0], rotate: [0, 1.2, -0.8, 0] },
-      { duration: 6.2, repeat: Infinity, easing: "ease-in-out", delay: 3.0 }
     );
 
     const floatDurations = [4.0, 3.2, 4.6, 3.8];
@@ -297,9 +288,7 @@ async function runSequence() {
     playFlipHeadline(line1, { delay: 2200 });
     waapiAnimate(subtext, [{ opacity: 0, transform: "translateY(20px)" }, { opacity: 0.8, transform: "translateY(0)" }], { duration: 500, delay: 3050, easing: "ease-out" });
     waapiAnimate(ctaBtn, [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 3200, easing: "ease-out" });
-    waapiAnimate(footnote, [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 3350, easing: "linear" });
     waapiAnimate(muchi, [{ opacity: 0, transform: "translateX(28px)" }, { opacity: 1, transform: "translateX(0)" }], { duration: 600, delay: 2300, easing: "ease-out" });
-    waapiAnimate(muchi, [{ transform: "translate(0,0) rotate(0deg)" }, { transform: "translate(7px,-14px) rotate(1.2deg)" }, { transform: "translate(-5px,-6px) rotate(-0.8deg)" }, { transform: "translate(0,0) rotate(0deg)" }], { duration: 6200, delay: 3000, easing: "ease-in-out", iterations: Infinity });
     const waapiFloats = [
       ["translate(0,0) rotate(0deg)", "translate(4px,-8px) rotate(3deg)", "translate(-3px,0px) rotate(-2deg)", "translate(0,0) rotate(0deg)", 4000, 3100],
       ["translate(0,0) rotate(0deg)", "translate(-5px,-6px) rotate(-2deg)", "translate(3px,0px) rotate(2deg)", "translate(0,0) rotate(0deg)", 3200, 3300],
