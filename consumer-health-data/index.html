@@ -40,7 +40,7 @@
         <h1 class="privacy-title">Muchi Consumer Health Data Privacy Policy</h1>
 
         <div class="privacy-body">
-          <p class="privacy-meta">Last updated: 7 August 2026</p>
+          <p class="privacy-meta">Last updated: 23 September 2026</p>
 
           <p>
             This policy is provided separately from Muchi's general
@@ -62,18 +62,19 @@
             </li>
             <li>Photos of food you submit for automatic meal analysis</li>
             <li>
-              Voice recordings you submit for audio-based meal logging (if applicable — transcribed and then processed;
-              see retention note below)
+              Voice recordings you submit for audio-based meal logging (transcribed via our processor and not retained 
+              in Muchi's database; only the resulting meal description is stored)
             </li>
             <li>Free-text descriptions of meals you enter manually</li>
+            <li>Barcode scans you submit for food identification</li>
             <li>
               <strong>Inferred wellbeing indicators:</strong> your Muchi's emotional/health state, which is derived from
               your logged fibre and plant intake against your daily goals
             </li>
           </ul>
           <p>
-            We do not collect or infer: weight, calorie counts, medical diagnoses, menstrual/reproductive health data,
-            or biometric identifiers.
+            Meal macros (including calories) may be stored when you log meals. We do not collect or infer: weight, 
+            medical diagnoses, menstrual/reproductive health data, or biometric identifiers.
           </p>
 
           <h2 class="privacy-heading-lg">2. Why We Collect This Data</h2>
@@ -100,17 +101,23 @@
           <p>We share consumer health data only with the service providers necessary to operate Muchi:</p>
           <ul>
             <li>
-              <strong>AI/meal analysis processor (OpenRouter → Gemini 2.5 Flash)</strong> — analyzing food photos,
-              audio, and descriptions
+              <strong>AI/meal analysis processor (Gemini via our meal analysis stack/OpenRouter)</strong> — analyzing food photos 
+              and text descriptions
+            </li>
+            <li>
+              <strong>Voice transcription processor (Whisper via OpenRouter)</strong> — transcribing audio to text (audio 
+              not retained)
             </li>
             <li>
               <strong>Food database lookups (USDA FoodData Central, Open Food Facts)</strong> — matching foods to
-              nutrition/fibre data
+              nutrition/fibre data and resolving barcode scans
             </li>
             <li><strong>Authentication (Supabase, Apple, Google)</strong> — account sign-in</li>
             <li><strong>Infrastructure (Cloudflare)</strong> — hosting and app delivery</li>
             <li>
-              <strong>Analytics, only if you opt in (PostHog, EU region)</strong> — understanding app usage patterns
+              <strong>Analytics, only if you opt in (PostHog, EU region)</strong> — understanding app usage patterns. 
+              Analytics may receive entry method (e.g., photo vs text vs voice vs barcode) but not meal contents. Analytics 
+              has its own separate consent. See our general <a href="../privacy/">Privacy Policy</a> for more details.
             </li>
           </ul>
           <p>
@@ -151,23 +158,32 @@
             one-time 45-day extension if reasonably necessary. Requests are free up to twice per year.
           </p>
           <p>
-            We will not discriminate against you (e.g., by degrading app functionality) for exercising any of these
-            rights.
+            We will not discriminate against you for exercising any of these rights. Consumer health data collection is 
+            required to use Muchi's meal logging features. If you decline or withdraw consent to collect consumer health 
+            data, you will not be able to use those features. To withdraw consent and delete stored health data, use the 
+            Delete Account option in the app or submit a deletion request as described above.
           </p>
 
           <h2 class="privacy-heading-lg">6. Consent</h2>
           <p>
-            When you create a Muchi account and log meals, the consumer health data described in Section 1 (meal photos,
-            voice recordings, descriptions, and derived fibre/plant data) is collected and stored automatically as part
-            of providing you the core Muchi service.
+            Before consumer health data (meal photos, voice recordings, descriptions, barcode scans, and derived fibre/plant 
+            data) is collected, leaves your device, or is written to our backend, Muchi will ask for your separate, 
+            affirmative opt-in consent via a Continue prompt in the app. This consent is required to use meal logging 
+            features. If you decline, you will not be able to use those features.
+          </p>
+          <p>
+            To withdraw your health data consent and delete stored health data, use the Delete Account option in the app 
+            or submit a deletion request as described in Section 5. Withdrawing consent or deleting your account means 
+            you will no longer be able to use Muchi's meal logging features.
           </p>
           <p>
             Separately, we ask for your affirmative opt-in consent before enabling in-app usage tracking (analytics).
-            You can decline this without affecting your ability to use Muchi's core features.
+            Analytics consent is independent of health data consent. You can decline analytics without affecting your 
+            ability to use Muchi's meal logging features, provided you have granted health data consent.
           </p>
           <p>
-            You can withdraw analytics consent at any time using the contact method in Section 5. To request deletion of
-            your account and stored consumer health data, see Section 5.
+            You can manage or withdraw analytics consent using the contact method in Section 5. To delete your account 
+            and all stored consumer health data, see Section 5.
           </p>
 
           <h2 class="privacy-heading-lg">7. Data Security</h2>
