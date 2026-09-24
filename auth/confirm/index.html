@@ -1,0 +1,139 @@
+<!doctype html>
+<!--
+  IMPORTANT: Allowlist this URL in Supabase Auth → Redirect URLs:
+  - https://feedmuchi.com/auth/confirm
+  - https://feedmuchi.com/auth/confirm/
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Email confirmed — Muchi</title>
+    <meta name="description" content="Your Muchi account email is confirmed." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://feedmuchi.com/auth/confirm/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muchi" />
+    <meta property="og:title" content="Email confirmed — Muchi" />
+    <meta property="og:description" content="Your Muchi account email is confirmed." />
+    <meta property="og:url" content="https://feedmuchi.com/auth/confirm/" />
+    <link rel="icon" type="image/png" href="../../images/favicon.png" />
+    <link rel="apple-touch-icon" href="../../images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=DM+Sans:wght@400;500;700&family=Zalando+Sans+SemiExpanded:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body class="privacy-page">
+    <header class="privacy-header">
+      <a href="../../" aria-label="Muchi home">
+        <img class="privacy-logo" src="../../images/logo.svg" alt="Muchi" />
+      </a>
+    </header>
+
+    <main class="privacy-main">
+      <article class="privacy-content">
+        <h1 class="privacy-title" id="page-title">You're all set</h1>
+
+        <div class="privacy-body" id="page-body">
+          <p>
+            Your email is confirmed. Open Muchi to finish setting up — Muchi's waiting for you.
+          </p>
+          
+          <p style="margin-top: 2rem;">
+            <a
+              href="#"
+              id="open-app-link"
+              class="privacy-body"
+              style="display: inline-block; padding: 0.75rem 1.5rem; background: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 500;"
+            >
+              Back to the app
+            </a>
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer-credit">
+        Muchi — made with care by
+        <a href="https://www.sharirobertshaw.com" target="_blank" rel="noopener noreferrer"
+          >www.sharirobertshaw.com</a
+        >
+        in Bath
+      </p>
+      <nav class="site-footer-nav" aria-label="Footer">
+        <a href="../../privacy/">Privacy Policy</a>
+        <a href="../../consumer-health-data/">Health Data Privacy</a>
+        <button
+          type="button"
+          class="site-footer-copy-contact"
+          aria-label="Copy hello@feedmuchi.com to clipboard"
+        >
+          <span class="site-footer-copy-label">
+            <span class="site-footer-copy-face site-footer-copy-default">Contact</span>
+            <span class="site-footer-copy-face site-footer-copy-success" aria-hidden="true"
+              >hello@feedmuchi.com copied</span
+            >
+          </span>
+        </button>
+      </nav>
+    </footer>
+
+    <script src="../../copy-email.js"></script>
+    <script>
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const error = params.get('error');
+        const errorDescription = params.get('error_description');
+        const code = params.get('code');
+        
+        const title = document.getElementById('page-title');
+        const body = document.getElementById('page-body');
+        const appLink = document.getElementById('open-app-link');
+
+        function buildDeepLink() {
+          const deepLinkParams = new URLSearchParams();
+          deepLinkParams.set('confirmed', '1');
+          
+          if (code) {
+            deepLinkParams.set('code', code);
+          }
+          
+          params.forEach((value, key) => {
+            if (key !== 'confirmed' && key !== 'code' && 
+                (key.includes('token') || key.includes('refresh') || key.includes('access'))) {
+              deepLinkParams.set(key, value);
+            }
+          });
+          
+          return 'muchi://sign-in?' + deepLinkParams.toString();
+        }
+
+        function attemptOpenApp() {
+          const deepLink = buildDeepLink();
+          window.location.href = deepLink;
+        }
+
+        if (error) {
+          title.textContent = 'Something went wrong';
+          body.innerHTML = '<p>There was a problem confirming your email. Please try signing in again or contact us for help.</p>' +
+            '<p style="margin-top: 2rem;"><a href="' + buildDeepLink() + '" class="privacy-body" style="display: inline-block; padding: 0.75rem 1.5rem; background: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 500;">Open Muchi</a> or <a href="../../">return to home</a></p>';
+        } else {
+          const deepLink = buildDeepLink();
+          appLink.href = deepLink;
+          
+          appLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            attemptOpenApp();
+          });
+
+          setTimeout(attemptOpenApp, 1500);
+        }
+      })();
+    </script>
+  </body>
+</html>
