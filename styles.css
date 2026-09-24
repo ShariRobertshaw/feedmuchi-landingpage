@@ -1261,6 +1261,141 @@ main h6 {
   color: #242326;
 }
 
+.confirm-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.confirm-header {
+  display: grid;
+  place-items: center;
+  min-height: 148px;
+  padding: 32px;
+  flex-shrink: 0;
+}
+
+.confirm-header a {
+  display: inline-flex;
+}
+
+.confirm-logo {
+  width: 126px;
+  height: 67px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(11%) sepia(6%) saturate(342%) hue-rotate(206deg) brightness(96%)
+    contrast(89%);
+}
+
+.confirm-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 80px;
+}
+
+.confirm-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: min(740px, 100%);
+  text-align: center;
+}
+
+.confirm-title {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 80px;
+  color: var(--text-primary);
+}
+
+.confirm-copy {
+  margin: 0;
+  max-width: 577px;
+  opacity: 0.8;
+  font-family: var(--body-font);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.332px;
+  color: var(--text-primary);
+}
+
+.confirm-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 248px;
+  height: 56px;
+  border: 0;
+  border-radius: 32px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: var(--button-shadow);
+  font-family: var(--heading-font);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.confirm-cta:hover,
+.confirm-cta:focus-visible {
+  cursor: url("images/cursor-microbiome.png") 32 29, pointer;
+}
+
+.confirm-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 48px 80px;
+  border-top: 1px solid rgba(36, 35, 38, 0.05);
+  background: var(--cream);
+  flex-shrink: 0;
+}
+
+.confirm-footer-credit {
+  margin: 0;
+  font-family: var(--mono-font);
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.1641px;
+  color: var(--text-muted);
+}
+
+.confirm-footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.confirm-footer-nav {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.confirm-footer-nav a {
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
 @keyframes fibre-creature-float-1 {
   0%,
   100% {
@@ -1862,5 +1997,40 @@ main h6 {
   .privacy-heading-sm {
     font-size: 18px;
     line-height: 28px;
+  }
+
+  .confirm-header {
+    min-height: 100px;
+    padding: 24px 20px;
+  }
+
+  .confirm-logo {
+    width: 96px;
+    height: 51px;
+  }
+
+  .confirm-main {
+    padding: 32px 20px 64px;
+  }
+
+  .confirm-title {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .confirm-copy {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .confirm-footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  .confirm-footer-nav {
+    justify-content: center;
   }
 }

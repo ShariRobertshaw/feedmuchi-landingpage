@@ -40,7 +40,7 @@
         <h1 class="privacy-title">Muchi Consumer Health Data Privacy Policy</h1>
 
         <div class="privacy-body">
-          <p class="privacy-meta">Last updated: 7 August 2026</p>
+          <p class="privacy-meta">Last updated: 23 September 2026</p>
 
           <p>
             This policy is provided separately from Muchi's general
@@ -58,22 +58,25 @@
           <ul>
             <li>
               <strong>Dietary and nutrition information:</strong> meals, foods, and plant varieties you log, including
-              fibre intake estimates derived from that logging
+              fibre intake estimates and other nutrition values (such as macros) returned with food lookups, derived from
+              that logging
             </li>
             <li>Photos of food you submit for automatic meal analysis</li>
             <li>
-              Voice recordings you submit for audio-based meal logging (if applicable — transcribed and then processed;
-              see retention note below)
+              Voice you submit for audio-based meal logging — we send the recording for transcription and do not keep
+              the audio file; only the transcript and resulting meal analysis are stored
             </li>
             <li>Free-text descriptions of meals you enter manually</li>
+            <li>Barcode scans you submit to look up packaged foods</li>
             <li>
               <strong>Inferred wellbeing indicators:</strong> your Muchi's emotional/health state, which is derived from
               your logged fibre and plant intake against your daily goals
             </li>
           </ul>
           <p>
-            We do not collect or infer: weight, calorie counts, medical diagnoses, menstrual/reproductive health data,
-            or biometric identifiers.
+            We do not collect or infer: weight, body measurements, medical diagnoses, menstrual/reproductive health data,
+            or biometric identifiers. Muchi is not a calorie-counting product — macros may be stored with logged foods
+            from nutrition lookups, but they are not used as a primary goal or scoring system.
           </p>
 
           <h2 class="privacy-heading-lg">2. Why We Collect This Data</h2>
@@ -81,9 +84,9 @@
           <ul>
             <li>Calculate your daily fibre intake and plant-diversity score</li>
             <li>Power the core app mechanic (your Muchi's emotional state)</li>
-            <li>Provide meal analysis via automated photo/audio/text processing</li>
+            <li>Provide meal analysis via photo, barcode, voice, or text processing</li>
             <li>Track your progress toward your fibre and plant-variety goals</li>
-            <li>Improve the accuracy of our food-recognition and analysis features</li>
+            <li>Show you fibre and related nutrition estimates for the meals you log</li>
             <li>Provide customer support when you contact us about your data or logs</li>
           </ul>
           <p>We do not use this data for advertising, and we do not sell it.</p>
@@ -91,7 +94,7 @@
           <h2 class="privacy-heading-lg">3. Sources of This Data</h2>
           <p>We collect consumer health data:</p>
           <ul>
-            <li>Directly from you, when you log meals via photo, voice, or text</li>
+            <li>Directly from you, when you log meals via photo, barcode, voice, or text</li>
             <li>From our service providers, who help us process what you submit (see Section 4)</li>
           </ul>
           <p>We do not purchase or acquire consumer health data about you from any third party.</p>
@@ -100,19 +103,26 @@
           <p>We share consumer health data only with the service providers necessary to operate Muchi:</p>
           <ul>
             <li>
-              <strong>AI/meal analysis processor (OpenRouter → Gemini 2.5 Flash)</strong> — analyzing food photos,
-              audio, and descriptions
+              <strong>Meal analysis — photos and text descriptions (Google Gemini via OpenRouter)</strong> — identifying
+              foods from photos and typed descriptions
             </li>
             <li>
-              <strong>Food database lookups (USDA FoodData Central, Open Food Facts)</strong> — matching foods to
-              nutrition/fibre data
+              <strong>Meal analysis — voice (Whisper via OpenRouter)</strong> — transcribing spoken meal descriptions
+              before analysis; the audio file is not retained by Muchi
+            </li>
+            <li>
+              <strong>Food database lookups (USDA FoodData Central, Open Food Facts)</strong> — matching foods and
+              barcodes to nutrition/fibre data
             </li>
             <li><strong>Authentication (Supabase, Apple, Google)</strong> — account sign-in</li>
             <li><strong>Infrastructure (Cloudflare)</strong> — hosting and app delivery</li>
-            <li>
-              <strong>Analytics, only if you opt in (PostHog, EU region)</strong> — understanding app usage patterns
-            </li>
           </ul>
+          <p>
+            Optional in-app analytics (PostHog, EU region) is covered in Muchi's general
+            <a href="../privacy/">Privacy Policy</a>. If you opt in, analytics events may include how you logged a meal
+            (for example photo, barcode, voice, or text), but not meal contents, fibre totals, plant lists, photos,
+            audio, or transcripts. Analytics is a separate opt-in from consumer health data consent.
+          </p>
           <p>
             We do not share consumer health data with data brokers, advertisers, or affiliates for marketing purposes.
             We do not sell consumer health data.
@@ -137,7 +147,7 @@
             </li>
             <li>
               <strong>Withdraw consent</strong> — revoke any consent you've previously given for collection or sharing
-              of your consumer health data, at any time
+              of your consumer health data, at any time, including via the Settings toggle in the app
             </li>
             <li>
               <strong>Appeal</strong> — if we deny a request, you can appeal the decision and will receive a written
@@ -145,29 +155,37 @@
             </li>
           </ul>
           <p>
-            To exercise any of these rights, email
+            To exercise access, deletion, or appeal rights, email
             <a href="mailto:hello@feedmuchi.com?subject=Consumer%20Health%20Data%20Request">hello@feedmuchi.com</a>
             with the subject line "Consumer Health Data Request." We will respond within 45 days, with a possible
             one-time 45-day extension if reasonably necessary. Requests are free up to twice per year.
           </p>
           <p>
-            We will not discriminate against you (e.g., by degrading app functionality) for exercising any of these
-            rights.
+            You can withdraw consumer health data consent at any time in Account / Settings. Declining or withdrawing
+            consent means we stop collecting consumer health data, so features that need that data — including meal
+            logging and analysis — will not work until you give consent again. The rest of the app remains available.
+            Exercising access, deletion, or appeal rights will not otherwise reduce the features available to you.
           </p>
 
           <h2 class="privacy-heading-lg">6. Consent</h2>
           <p>
-            When you create a Muchi account and log meals, the consumer health data described in Section 1 (meal photos,
-            voice recordings, descriptions, and derived fibre/plant data) is collected and stored automatically as part
-            of providing you the core Muchi service.
+            Before we collect the consumer health data described in Section 1, we ask for your separate, affirmative
+            opt-in consent in the app. You can decline. If you decline, meal logging and analysis stay off until you
+            opt in.
           </p>
           <p>
-            Separately, we ask for your affirmative opt-in consent before enabling in-app usage tracking (analytics).
-            You can decline this without affecting your ability to use Muchi's core features.
+            You can withdraw that consent at any time in Account / Settings. After withdrawal, we stop collecting new
+            consumer health data. Existing logs remain until you delete them or request deletion (see Section 5 and
+            Section 9).
           </p>
           <p>
-            You can withdraw analytics consent at any time using the contact method in Section 5. To request deletion of
-            your account and stored consumer health data, see Section 5.
+            Separately, we ask for your affirmative opt-in before enabling in-app usage tracking (analytics). Analytics
+            consent is independent of consumer health data consent. You can decline or turn off analytics without
+            affecting meal logging, provided you have given consumer health data consent.
+          </p>
+          <p>
+            For access, deletion, or appeal requests, use the email contact in Section 5. To delete your account and
+            stored consumer health data, see Section 5 and Section 9.
           </p>
 
           <h2 class="privacy-heading-lg">7. Data Security</h2>
@@ -188,8 +206,12 @@
             long as your account is active.
           </p>
           <p>
-            Food logs, plant-variety counts, fibre totals, and your Muchi's derived state are kept for as long as your
-            account is active.
+            Voice audio used for meal logging is sent for transcription and is not stored in our database. Transcripts
+            and the resulting meal analysis are retained with your food log for as long as your account is active.
+          </p>
+          <p>
+            Food logs, plant-variety counts, fibre totals, nutrition values stored with logged foods, and your Muchi's
+            derived state are kept for as long as your account is active.
           </p>
           <p>
             If you delete your account (or submit a consumer health data deletion request), we delete this data,
