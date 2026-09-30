@@ -59,12 +59,23 @@
     </footer>
 
     <script>
+      // Keep in sync with muchi-app src/auth/email-confirm-app-open.ts
       (function () {
         const APP_STORE_URL =
           "https://apps.apple.com/gb/app/muchi-fibre-and-plant-tracker/id6788687335";
+        const PLAY_STORE_URL =
+          "https://play.google.com/store/apps/details?id=com.feedmuchi.muchi";
+        const ANDROID_PACKAGE_ID = "com.feedmuchi.muchi";
         const params = new URLSearchParams(window.location.search);
         const error = params.get("error");
         const code = params.get("code");
+        const userAgent = navigator.userAgent || "";
+        const platformHint = params.get("platform");
+        const isAndroid =
+          platformHint === "android" || (platformHint !== "ios" && /Android/i.test(userAgent));
+        const isIOS =
+          platformHint === "ios" ||
+          (platformHint !== "android" && /iPhone|iPad|iPod/i.test(userAgent));
 
         const title = document.getElementById("page-title");
         const copy = document.getElementById("page-copy");
@@ -82,6 +93,7 @@
             if (
               key !== "confirmed" &&
               key !== "code" &&
+              key !== "platform" &&
               (key.includes("token") || key.includes("refresh") || key.includes("access"))
             ) {
               deepLinkParams.set(key, value);
@@ -91,13 +103,43 @@
           return "muchi://sign-in?" + deepLinkParams.toString();
         }
 
-        function openApp() {
+        function buildAndroidIntent(deepLink) {
+          const url = new URL(deepLink);
+          return (
+            "intent://" +
+            url.host +
+            url.pathname +
+            url.search +
+            "#Intent;scheme=" +
+            url.protocol.replace(":", "") +
+            ";package=" +
+            ANDROID_PACKAGE_ID +
+            ";S.browser_fallback_url=" +
+            encodeURIComponent(PLAY_STORE_URL) +
+            ";end"
+          );
+        }
+
+        function appUrl() {
           const deepLink = buildDeepLink();
-          window.location.href = deepLink;
+          return isAndroid ? buildAndroidIntent(deepLink) : deepLink;
+        }
+
+        function storeFallbackUrl() {
+          if (isAndroid) return PLAY_STORE_URL;
+          if (isIOS) return APP_STORE_URL;
+          return null;
+        }
+
+        function openApp() {
+          window.location.href = appUrl();
+
+          const fallbackUrl = storeFallbackUrl();
+          if (!fallbackUrl) return;
 
           window.setTimeout(() => {
             if (!document.hidden) {
-              window.location.href = APP_STORE_URL;
+              window.location.href = fallbackUrl;
             }
           }, 2000);
         }
@@ -109,8 +151,7 @@
           appLink.textContent = "Open Muchi";
         }
 
-        const deepLink = buildDeepLink();
-        appLink.href = deepLink;
+        appLink.href = appUrl();
         appLink.addEventListener("click", function (event) {
           event.preventDefault();
           openApp();
