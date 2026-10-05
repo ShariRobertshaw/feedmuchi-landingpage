@@ -239,7 +239,6 @@ main h6 {
 
 .store-badge {
   display: inline-flex;
-  width: 182px;
   height: 54px;
   text-decoration: none;
   opacity: 0;
@@ -249,7 +248,7 @@ main h6 {
   display: block;
   width: 182px;
   height: 54px;
-  object-fit: contain;
+  object-fit: fill;
 }
 
 .store-badge:hover,
@@ -257,6 +256,20 @@ main h6 {
   cursor: url("images/cursor-microbiome.png") 32 29, pointer;
 }
 
+.store-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cta-stack .store-badges {
+  justify-content: flex-start;
+  opacity: 0;
+}
+
+.cta-stack .store-badge,
 .signup .store-badge {
   opacity: 1;
 }
