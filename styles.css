@@ -1057,6 +1057,21 @@ main h6 {
   text-decoration: underline;
 }
 
+.site-footer-instagram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  line-height: 0;
+}
+
+.site-footer-instagram img {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
 .site-footer-copy-contact {
   border: 0;
   padding: 0;
